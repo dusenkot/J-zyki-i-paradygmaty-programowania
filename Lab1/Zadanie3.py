@@ -1,3 +1,5 @@
+from functools import reduce
+
 def optymalizacja_proceduralna(zadania):
     zadania.sort(key=lambda x: x[1])  # x[1] to czas wykonania
     czas_oczkiwania = 0
@@ -11,7 +13,8 @@ def optymalizacja_proceduralna(zadania):
 def optymalizacja_funkcyjna(zadania):
     posortowane_zadania = sorted(zadania, key=lambda x: x[1])
     czas_oczkiwania = 0
-    calkowity_czas = reduce(lambda acc, zadanie: acc + czas_oczkiwania + zadanie[1], posortowane_zadania, 0)
+    calkowity_czas = 0
+    (lambda acc, zadanie: acc + czas_oczkiwania + zadanie[1], posortowane_zadania, 0)
     return posortowane_zadania, calkowity_czas
 zadania = [
     ("Zadanie1", 3, 50),
